@@ -43,6 +43,9 @@ RUN adduser \
 
 WORKDIR /app
 
+# Ensure static directory exists
+RUN mkdir -p /app/static
+
 # Copy binary and web assets
 COPY --from=build /bin/server /bin/server
 COPY ./example_dashboard.html ./example_dashboard.html
