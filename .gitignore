@@ -1,0 +1,14 @@
+# Environment and secrets
+.env
+.env.*
+
+# Compiled binaries
+tasty-links
+*.exe
+*.test
+
+# Logs and OS files
+*.log
+.DS_Store
+.vscode/
+.idea/

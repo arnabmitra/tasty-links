@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Referrals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0f172a',
+                        card: 'rgba(17, 24, 39, 0.7)',
+                        primary: '#38bdf8',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: radial-gradient(circle at top, #1e293b, #0f172a);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+    </style>
+</head>
+<body class="text-gray-200 antialiased font-sans">
+    <div class="max-w-3xl mx-auto px-6 py-16">
+        <!-- Navigation Menu -->
+        <nav class="flex gap-6 mb-12 border-b border-gray-800 pb-4 justify-center md:justify-start">
+            <a href="/example_dashboard.html" class="text-gray-400 hover:text-primary transition-colors font-medium">Dashboard</a>
+            <a href="/templates/referral.html" class="text-primary font-bold transition-colors">Referrals</a>
+        </nav>
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400 mb-4">
+                Recommended Platforms
+            </h1>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto">
+                Sign up using the referral links below to get exclusive sign-on bonuses and discounts.
+            </p>
+        </header>
+
+        <div class="space-y-6">
+            <!-- OKX Referral -->
+            <a href="https://app.okx.com/en-us/join/4D4Y4K3Q" target="_blank" rel="noopener noreferrer" class="glass-card flex items-center p-6 rounded-2xl block text-left group">
+                <div class="h-16 w-16 flex-shrink-0 bg-black rounded-full flex items-center justify-center p-3 border border-gray-700 group-hover:border-primary transition-colors">
+                    <!-- OKX Logo Placeholder -->
+                    <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6H7v-2h2V7h2v2h2v2h-2v6z"/>
+                    </svg>
+                </div>
+                <div class="ml-6 flex-1">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">OKX</h2>
+                    <p class="text-gray-400 text-sm">Crypto Exchange • Get mystery boxes and fee discounts when you sign up.</p>
+                </div>
+                <div class="ml-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Rakuten Referral -->
+            <a href="https://www.rakuten.com/r/ARNABM8?eeid=28187" target="_blank" rel="noopener noreferrer" class="glass-card flex items-center p-6 rounded-2xl block text-left group">
+                <div class="h-16 w-16 flex-shrink-0 bg-white rounded-full flex items-center justify-center p-2 border border-gray-700 group-hover:border-primary transition-colors">
+                    <span class="text-red-600 font-extrabold text-2xl tracking-tighter">R</span>
+                </div>
+                <div class="ml-6 flex-1">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">Rakuten</h2>
+                    <p class="text-gray-400 text-sm">Cash Back • Get a sign-up bonus when you join and make your first purchase.</p>
+                </div>
+                <div class="ml-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </a>
+            
+            <!-- tastytrade Referral -->
+            <a href="https://open.tastytrade.com/signup/?referralCode=JK8XT6MWZE" target="_blank" rel="noopener noreferrer" class="glass-card flex items-center p-6 rounded-2xl block text-left group">
+                <div class="h-16 w-16 flex-shrink-0 bg-red-600 rounded-full flex items-center justify-center p-2 border border-gray-700 group-hover:border-primary transition-colors">
+                    <span class="text-white font-extrabold text-lg">tasty</span>
+                </div>
+                <div class="ml-6 flex-1">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">tastytrade</h2>
+                    <p class="text-gray-400 text-sm">Brokerage • Award-winning trading platform for options and futures.</p>
+                </div>
+                <div class="ml-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
