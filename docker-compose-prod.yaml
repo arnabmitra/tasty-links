@@ -24,7 +24,7 @@ services:
   # (If you already have Traefik running on Liquid Web from eth-tx-lookup,
   # you can comment out this service and connect to the shared network).
   reverse-proxy:
-    image: traefik:v3.3
+    image: traefik:latest
     container_name: traefik-reverse-proxy
     restart: unless-stopped
     environment:
