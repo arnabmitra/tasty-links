@@ -13,9 +13,10 @@ services:
       - "8080:8080"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.tasty-links.rule=Host(`YOUR_DOMAIN_HERE`)"
+      - "traefik.http.routers.tasty-links.rule=Host(`tastylinks.duckdns.org`)"
       - "traefik.http.routers.tasty-links.entrypoints=websecure"
       - "traefik.http.routers.tasty-links.tls.certresolver=myresolver"
+      - "traefik.http.services.tasty-links.loadbalancer.server.port=8080"
     networks:
       - web
 
