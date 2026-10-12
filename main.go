@@ -8,6 +8,28 @@ import (
 	"os"
 )
 
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		origin := r.Header.Get("Origin")
+		if origin != "" {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+		} else {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+		}
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization, X-CSRF-Token")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight OPTIONS request immediately
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	prodURL, _ := url.Parse("https://api.tastyworks.com")
 	certURL, _ := url.Parse("https://api.cert.tastyworks.com")
@@ -29,9 +51,18 @@ func main() {
 		req.Host = certURL.Host
 	}
 
-	// Route API requests through the proxy to bypass browser CORS
-	http.Handle("/proxy/prod/", http.StripPrefix("/proxy/prod", prodProxy))
-	http.Handle("/proxy/cert/", http.StripPrefix("/proxy/cert", certProxy))
+	modifyResponse := func(resp *http.Response) error {
+		resp.Header.Set("Access-Control-Allow-Origin", "*")
+		resp.Header.Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
+		resp.Header.Set("Access-Control-Allow-Headers", "*")
+		return nil
+	}
+	prodProxy.ModifyResponse = modifyResponse
+	certProxy.ModifyResponse = modifyResponse
+
+	// Route API requests through the proxy with CORS & preflight handling
+	http.Handle("/proxy/prod/", corsMiddleware(http.StripPrefix("/proxy/prod", prodProxy)))
+	http.Handle("/proxy/cert/", corsMiddleware(http.StripPrefix("/proxy/cert", certProxy)))
 
 	// Serve static files and route root "/" to the referral links page
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
